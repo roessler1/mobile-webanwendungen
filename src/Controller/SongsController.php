@@ -9,10 +9,18 @@ use Twig\Environment;
 
 class SongsController extends AbstractController
 {
-    #[Route('/', name: 'homepage')]
+
+    #[Route('/')]
+    public function indexNoLocale(): Response
+    {
+        return $this->redirectToRoute('homepage');
+    }
+
+    #[Route('/{_locale<%app.supported_locales%>}/', name: 'homepage')]
     public function index(Environment $twig): Response
     {
-        return new Response($twig->render('index.html.twig', [
-        ]));
+        $_locale = 'en';
+        return $this->render('index.html.twig', [
+        ]);
     }
 }
