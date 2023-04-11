@@ -12,7 +12,7 @@ function play(url) {
 
     song = new Howl({
         src: [url],
-        html5: false,
+        html5: true,
     });
     song.play();
 }
