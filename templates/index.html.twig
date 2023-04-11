@@ -1,5 +1,14 @@
 {% extends 'naviagtion.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/song_control.js"></script>
+{% endblock javascripts %}
+
 {% block main %}
-    <img src="/images/under-construction.gif" alt="under construction"/>
+    <img onclick="play_pause('{{audio_directory}}'+'/Trivium/(2008) Shogun [320]/03 Down from the Sky.mp3')" src="/images/under-construction.gif" alt="under construction"/>
+    <audio controls>
+        <source type="audio/flac" src="{{ audio_directory }}/Trivium/(2005) Ascendancy (Special Edition) [320]/03 Pull Harder on the Strings of Your Martyr.mp3">
+    </audio>
 {% endblock main %}
