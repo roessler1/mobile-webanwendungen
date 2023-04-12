@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/assets/css/nav_style.css" rel="stylesheet">
+{% endblock stylesheets %}
 
 {% block body %}
-    <nav>
+    <nav class="nav" class="col-3"->
         <!-- TODO: create navigation bar -->
+        <input type="text" placeholder="Search..." style="border-radius: 25px;">
+        {% set navigation = ['Home', 'Profile', 'Playlists'] %}
+        {% for item in navigation %}
+            {{ item }}
+        {% endfor %}
     </nav>
     <main>
         {% block main %}{% endblock main %}
     </main>
-
 {% endblock body %}

@@ -7,8 +7,14 @@
 {% endblock javascripts %}
 
 {% block main %}
-    <img onclick="play_pause('{{audio_directory}}'+'/Trivium/(2008) Shogun [320]/03 Down from the Sky.mp3')" src="/images/under-construction.gif" alt="under construction"/>
-    <audio controls>
-        <source type="audio/flac" src="{{ audio_directory }}/Trivium/(2005) Ascendancy (Special Edition) [320]/03 Pull Harder on the Strings of Your Martyr.mp3">
-    </audio>
+    <div class="row">
+        <div class="col-3">
+            <img onclick="play_pause('{{audio_directory}}'+'/Trivium/(2008) Shogun [320]/03 Down from the Sky.mp3')" src="/images/under-construction.gif" alt="under construction"/>
+        </div> <!-- 25% -->
+        <div class="col-9">
+            <audio controls>
+                <source type="audio/flac" src="{{ audio_directory }}/Trivium/(2005) Ascendancy (Special Edition) [320]/03 Pull Harder on the Strings of Your Martyr.mp3">
+            </audio>
+        </div> <!-- 75% -->
+    </div>
 {% endblock main %}

@@ -1,0 +1,12 @@
+.nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    color: #FFFFFF;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    word-spacing: 50px;
+    font-size: 1.2em;
+    width: 100%;
+}

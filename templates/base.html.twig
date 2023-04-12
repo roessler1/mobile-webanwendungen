@@ -8,6 +8,7 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            <link href="/assets/css/responsive_grid_view.css" rel="stylesheet">
         {% endblock stylesheets %}
 
         {% block javascripts %}
