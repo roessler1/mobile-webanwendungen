@@ -1,26 +1,18 @@
-let song = new Howl({
-    src: []
-});
+let player;
 let isPlaying = false;
 
 function play(url) {
-    /*const response = await axios.get("/music/Music" + url, {
-        responseType: 'arraybuffer',
+    player = AV.Player.fromURL(url);
+    player.play();
+    player.on('end', function () {
+        play('/music/Music/Trivium/(2017) The Sin And The Sentence [Hi-Res]/01. The Sin And The Sentence.flac');
     });
-    // create audioBuffer (decode audio file)
-    const audioBuffer = await audioContext.decodeAudioData(response.data);*/
-
-    song = new Howl({
-        src: [url],
-        html5: true,
-    });
-    song.play();
 }
 
 function play_pause(url) {
     if(isPlaying) {
         isPlaying = false;
-        song.stop();
+        player.stop();
     } else {
         isPlaying = true;
         play(url);

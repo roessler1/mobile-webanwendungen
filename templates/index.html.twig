@@ -2,14 +2,16 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/assets/aurora.js"></script>
+    <script src="/assets/flac.js"></script>
+    <script src="/assets/mp3.js"></script>
     <script src="/assets/song_control.js"></script>
 {% endblock javascripts %}
 
 {% block main %}
     <div class="row">
         <div class="col-3">
-            <img onclick="play_pause('{{audio_directory}}'+'/Trivium/(2008) Shogun [320]/03 Down from the Sky.mp3')" src="/images/under-construction.gif" alt="under construction"/>
+            <img onclick="play_pause('{{audio_directory}}'+'{{ song[0].directory }}')" src="/images/under-construction.gif" alt="under construction"/>
         </div> <!-- 25% -->
         <div class="col-9">
             <audio controls>
