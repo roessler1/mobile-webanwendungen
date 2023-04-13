@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArtistController extends AbstractController
 {
-    #[Route('/artist/{id}', name: 'artist')]
+    #[Route('/{_locale<%app.supported_locales%>}/artist/{id}', name: 'artist')]
     public function index(Artist $artist, AlbumRepository $albumRepository): Response
     {
         return $this->render('artist.html.twig', [
