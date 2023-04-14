@@ -5,15 +5,16 @@
 {% endblock stylesheets %}
 
 {% block body %}
-    <nav class="nav" class="col-3"->
-        <!-- TODO: create navigation bar -->
+    <nav class="nav">
         <input type="text" placeholder="Search..." style="border-radius: 25px;">
-        {% set navigation = ['Home', 'Profile', 'Playlists'] %}
-        {% for item in navigation %}
-            {{ item }}
-        {% endfor %}
+        <a href="">Home</a>
+        <a href="">Artist</a>
     </nav>
     <main>
+        <div class="col-12 artistBackground1">
+        </div>
+        <div class="col-12 artistBackground2">
+        </div>
         {% block main %}{% endblock main %}
     </main>
 {% endblock body %}

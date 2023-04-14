@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets %}
+
+{% block body %}
+    <main>
+        {% block main %}{% endblock main %}
+    </main>
+{% endblock body %}
