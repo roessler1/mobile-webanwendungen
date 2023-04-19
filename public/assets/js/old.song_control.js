@@ -3,6 +3,7 @@ let isPlaying = false;
 
 function play(url) {
     player = AV.Player.fromURL(url);
+    player.preload();
     player.play();
     player.on('end', function () {
         play('/music/Music/Trivium/(2017) The Sin And The Sentence [Hi-Res]/01. The Sin And The Sentence.flac');

@@ -23,7 +23,8 @@ class SongsController extends AbstractController
     {
         $_locale = 'en';
         return $this->render('index.html.twig', [
-            'song' => $songRepository->findBy(array('name' => 'Dying in Your Arms'))
+            'song' => $songRepository->findBy(array('name' => 'Dying in Your Arms')),
+            'ip' => $_SERVER['SERVER_ADDR']
         ]);
     }
 }
