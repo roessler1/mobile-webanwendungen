@@ -1,1 +1,10 @@
+{% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link href="/assets/css/player_smartphone.css" media="screen and (max-width: 600px)" rel="stylesheet">
+    <link href="/assets/css/player_desktop.css" media="screen and (min-width: 600px)" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body %}
+    {{ render_esi(path('player')) }}
+{% endblock body %}

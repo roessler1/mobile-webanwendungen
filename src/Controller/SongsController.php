@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Song;
 use App\Repository\SongRepository;
+use Detection\MobileDetect;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,5 +28,11 @@ class SongsController extends AbstractController
             'song' => $songRepository->findBy(array('name' => 'Dying in Your Arms')),
             'ip' => $_SERVER['SERVER_ADDR']
         ]);
+    }
+
+    #[Route('/player/', name: 'player')]
+    public function getPlayer(): Response
+    {
+        return $this->render('player.html.twig', []);
     }
 }

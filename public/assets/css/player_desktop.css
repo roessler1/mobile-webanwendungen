@@ -1,0 +1,68 @@
+#lastbtn {
+    width: 24px;
+    height: 26px;
+    margin-left: 25px;
+}
+
+#player_seekbar {
+    padding-right: 50px;
+    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+}
+
+#inner_container {
+    margin: 0 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#counter, #duration {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.85rem;
+    font-weight: lighter;
+    position: absolute;
+    top: 0;
+}
+
+#counter {
+    right: 100%;
+}
+
+#duration {
+    left: 100%;
+}
+
+#progressbar {
+    height: 12px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: inherit;
+    margin: 0 10px;
+}
+
+#slider {
+    height: 2px;
+    background-color: #ffffff;
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+
+#active-slider {
+    height: 2px;
+    background: linear-gradient(1deg, #ff4500, #ff5a00);
+    will-change: width;
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+
+#player_track {
+    min-width: 120px;
+    width: 18.5%;
+}
