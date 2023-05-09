@@ -24,10 +24,7 @@ class SongsController extends AbstractController
     public function index(SongRepository $songRepository): Response
     {
         $_locale = 'en';
-        return $this->render('index.html.twig', [
-            'song' => $songRepository->findBy(array('name' => 'Dying in Your Arms')),
-            'ip' => $_SERVER['SERVER_ADDR']
-        ]);
+        return $this->render('index.html.twig');
     }
 
     #[Route('/player/', name: 'player')]
