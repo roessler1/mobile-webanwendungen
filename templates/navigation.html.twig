@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link href="/assets/css/player_smartphone.css" media="screen and (max-width: 600px)" rel="stylesheet">
-    <link href="/assets/css/player_desktop.css" media="screen and (min-width: 600px)" rel="stylesheet">
+    {{ parent() }}
+    <link href="/assets/css/logged_in_grid.css" rel="stylesheet">
+    <link href="/assets/css/player.css" rel="stylesheet">
+    <link href="/assets/css/player_smartphone.css" rel="stylesheet" media="only screen and (max-width: 600px)">
+    <link href="/assets/css/player_desktop.css" rel="stylesheet" media="only screen and (min-width: 600px)">
 {% endblock stylesheets %}
+
+{% block javascripts %}
+{% endblock javascripts %}
 
 {% block body %}
     {{ render_esi(path('player')) }}

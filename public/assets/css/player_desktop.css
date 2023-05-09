@@ -5,11 +5,8 @@
 }
 
 #player_seekbar {
-    padding-right: 50px;
     flex: 1;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0%;
+    flex-basis: 0;
 }
 
 #inner_container {
@@ -57,7 +54,7 @@
     height: 2px;
     background: linear-gradient(1deg, #ff4500, #ff5a00);
     will-change: width;
-    width: 100%;
+    width: 0;
     position: absolute;
     left: 0;
 }
@@ -65,4 +62,15 @@
 #player_track {
     min-width: 120px;
     width: 18.5%;
+}
+
+#player_settings {
+    display: flex;
+    align-items: center;
+}
+
+#player_settings button {
+    height: 26px;
+    width: 28px;
+    margin: 0 5px;
 }
