@@ -67,6 +67,7 @@
 #player_settings {
     display: flex;
     align-items: center;
+    margin-right: 20px;
 }
 
 #player_settings button {
