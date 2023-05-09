@@ -1,7 +1,3 @@
-<link href="/assets/css/player.css" rel="stylesheet">
-<link href="/assets/css/player_smartphone.css" rel="stylesheet" media="only screen and (max-width: 600px)">
-<link href="/assets/css/player_desktop.css" rel="stylesheet" media="only screen and (min-width: 600px)">
-
 <footer>
     <div id="player_track">
         <div id="track">Thanks For Asking</div>
@@ -17,7 +13,26 @@
             <div id="duration">3:18</div>
         </div>
     </div>
-    <div id="player_settings"></div>
+    <div id="player_settings">
+        <button>
+            <svg id="track_order">
+                <path d="M0,5 h6 c1,0 5,8 6,8 h2 v3 l4,-5 h-6 c-1,0 -5,-8 -6,-8 h-6 z
+                         M12,3 h2 v-3 l4,5 h-6 z
+                         M0,11 h6 v2 h-6 z"/>
+            </svg>
+        </button>
+        <button>
+            <svg id="track_repeat">
+                <path d="M0,8 h18 v2 h-18 z"/>
+            </svg>
+        </button>
+        <button id="track_volume">
+            <svg>
+                <path d="M0,5 h6 l6,-5 v16 l-6,-5 h-6 z
+                         M17,2 v12 h2 v-12 z"/>
+            </svg>
+        </button>
+    </div>
     <div id="player_control">
         <button id="lastbtn">
             <svg>

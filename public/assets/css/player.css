@@ -1,22 +1,9 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-}
-
-* {
-    box-sizing: border-box;
-}
-
 footer {
     background-color: #1b1b1b;
+    grid-area: footer;
     display: flex;
     align-items: center;
-    position: absolute;
-    bottom: 0;
-    height: 60px;
     padding: 0 20px;
-    width: 100%;
 }
 
 button {
