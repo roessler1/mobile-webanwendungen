@@ -12,5 +12,15 @@
 {% endblock javascripts %}
 
 {% block body %}
+
+    <main>
+        <header>
+            <form id="search_form">
+                <input id="search_content" placeholder="Search">
+            </form>
+        </header>
+        {% block main %}{% endblock main%}
+    </main>
+
     {{ render_esi(path('player')) }}
 {% endblock body %}
