@@ -6,11 +6,45 @@
     <link href="/assets/css/player.css" rel="stylesheet">
     <link href="/assets/css/player_smartphone.css" rel="stylesheet" media="only screen and (max-width: 600px)">
     <link href="/assets/css/player_desktop.css" rel="stylesheet" media="only screen and (min-width: 600px)">
+    <link href="/assets/css/navigation.css" rel="stylesheet">
+    <link href="/assets/css/navigation_smartphone.css" rel="stylesheet" media="only screen and (max-width: 600px)">
+    <link href="/assets/css/navigation_desktop.css" rel="stylesheet" media="only screen and (min-width: 600px)">
 {% endblock stylesheets %}
 
 {% block javascripts %}
 {% endblock javascripts %}
 
 {% block body %}
+    <nav>
+        <ol>
+            <li>
+                <svg>
+                    <path d="M 2.9333 22 H 8.8 V 17.6 H 13.2 V 22 H 19.0666 V 13.2 H 22 L 11 3.6666 L 0 13.2 H 2.9333 Z"/>
+                </svg>
+                <div>
+                    Start
+                </div>
+            </li>
+            <li>
+                <svg>
+                    <path d="M8, 7 A7, 7 0 1 0 22, 7 A7, 7 0 0 0 8,7 M9,10.7 L0,19.5 l2.5 2.5 L11.1,12.7"/>
+                </svg>
+                <div>
+                    Suche
+                </div>
+            </li>
+            <li>
+                <svg>
+                    <path d="
+                    M 0 0 V 22 H 4 V 0 Z
+                    M 7 0 V 22 h 4 V 0 Z
+                    M 14 0 V 22 h 4 V 4 Z"/>
+                </svg>
+                <div>
+                    Bibliothek
+                </div>
+            </li>
+        </ol>
+    </nav>
     {{ render_esi(path('player')) }}
 {% endblock body %}
