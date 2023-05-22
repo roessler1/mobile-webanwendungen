@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Album;
 use App\Entity\Artist;
-use App\Entity\Song;
+use App\Entity\Track;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -49,7 +49,7 @@ class AdminController extends AbstractDashboardController
     {
         yield MenuItem::linkToCrud('Artists', 'fas fa-artist', Artist::class);
         yield MenuItem::linkToCrud('Albums', 'fas fa-album', Album::class);
-        yield MenuItem::linkToCrud('Songs', 'fas fa-song', Song::class);
+        yield MenuItem::linkToCrud('Tracks', 'fas fa-track', Track::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

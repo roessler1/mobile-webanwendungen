@@ -18,6 +18,6 @@ class AlbumCrudController extends AbstractCrudController
     {
         yield AssociationField::new('artist');
         yield TextField::new('name');
-        yield TextField::new('cover_directory');
+        yield TextField::new('cover');
     }
 }
