@@ -134,6 +134,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/ux-twig-component" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/intl-extra" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/apache-pack" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofsymfony/jsrouting-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/willdurand/jsonp-callback-validator" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
