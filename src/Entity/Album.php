@@ -18,19 +18,19 @@ class Album
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cover = null;
+
     #[ORM\ManyToOne(inversedBy: 'albums')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Artist $artist = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $cover_directory = null;
-
-    #[ORM\OneToMany(mappedBy: 'album', targetEntity: Song::class, orphanRemoval: true)]
-    private Collection $songs;
+    #[ORM\OneToMany(mappedBy: 'album', targetEntity: Track::class, orphanRemoval: true)]
+    private Collection $tracks;
 
     public function __construct()
     {
-        $this->songs = new ArrayCollection();
+        $this->tracks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -50,6 +50,18 @@ class Album
         return $this;
     }
 
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
     public function getArtist(): ?Artist
     {
         return $this->artist;
@@ -62,42 +74,30 @@ class Album
         return $this;
     }
 
-    public function getCoverDirectory(): ?string
-    {
-        return $this->cover_directory;
-    }
-
-    public function setCoverDirectory(?string $cover_directory): self
-    {
-        $this->cover_directory = $cover_directory;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, Song>
+     * @return Collection<int, Track>
      */
-    public function getSongs(): Collection
+    public function getTracks(): Collection
     {
-        return $this->songs;
+        return $this->tracks;
     }
 
-    public function addSong(Song $song): self
+    public function addTrack(Track $track): self
     {
-        if (!$this->songs->contains($song)) {
-            $this->songs->add($song);
-            $song->setAlbum($this);
+        if (!$this->tracks->contains($track)) {
+            $this->tracks->add($track);
+            $track->setAlbum($this);
         }
 
         return $this;
     }
 
-    public function removeSong(Song $song): self
+    public function removeTrack(Track $track): self
     {
-        if ($this->songs->removeElement($song)) {
+        if ($this->tracks->removeElement($track)) {
             // set the owning side to null (unless already changed)
-            if ($song->getAlbum() === $this) {
-                $song->setAlbum(null);
+            if ($track->getAlbum() === $this) {
+                $track->setAlbum(null);
             }
         }
 
