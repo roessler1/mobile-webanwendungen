@@ -5,9 +5,10 @@ li div {
 li {
     display: inline;
     margin-right: 50px;
+    width: 64px;
+    height: 64px;
 }
 
 svg {
-    width: 64px;
-    height: 64px;
+    viewBox: 0 0 48 48;
 }
