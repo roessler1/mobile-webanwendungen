@@ -6,3 +6,8 @@ li {
     display: inline;
     margin-right: 50px;
 }
+
+svg {
+    width: 150%;
+    height: 150%;
+}
