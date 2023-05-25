@@ -41,4 +41,10 @@ class MainController extends AbstractController
     {
         return $this->render('player.html.twig')->setMaxAge(86400);
     }
+
+    #[Route('/en/404exception', name: 'not_found_exception')]
+    public function getNotFoundException(): Response
+    {
+        return $this->render('not_found_exception.html.twig');
+    }
 }

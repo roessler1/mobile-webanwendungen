@@ -10,7 +10,7 @@ function loadContent(template, id) {
     })
         .done(function (data) {
             $('main').html(data);
-            window.history.pushState(data,"data.pageTitle", id);
+            window.history.pushState(data,data.title, url);
         });
 }
 
