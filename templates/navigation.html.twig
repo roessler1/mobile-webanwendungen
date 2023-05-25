@@ -12,12 +12,19 @@
 {% endblock stylesheets %}
 
 {% block javascripts %}
+    <script type="text/javascript" src="/assets/js/jquery-3.7.0-min.js"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script type="text/javascript" src="/assets/js/aurora.js"></script>
+    <script type="text/javascript" src="/assets/js/mp3.js"></script>
+    <script type="text/javascript" src="/assets/js/test.js"></script>
+    <script type="text/javascript" src="/assets/js/routing.js"></script>
 {% endblock javascripts %}
 
 {% block body %}
     <nav>
         <ol>
-            <li>
+            <li onclick="loadContent('homepage')">
                 <svg preserveAspectRatio="xMinYMin meet">
                     <path d="M 2.9333 22 H 8.8 V 17.6 H 13.2 V 22 H 19.0666 V 13.2 H 22 L 11 3.6666 L 0 13.2 H 2.9333 Z"/>
                 </svg>
@@ -46,5 +53,10 @@
             </li>
         </ol>
     </nav>
+    <main>
+        {% block main %}
+        {% endblock main%}
+    </main>
+
     {{ render_esi(path('player')) }}
 {% endblock body %}

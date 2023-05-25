@@ -20,29 +20,4 @@ body {
 
 main {
     grid-area: main;
-    width: 100%;
-}
-
-header {
-    height: 60px;
-    padding: 0 30px;
-    border-bottom: 1px solid #5a5a5a;
-    display: flex;
-    align-items: center;
-}
-
-#search_form {
-    height: 60%;
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-#search_content {
-    color: #ffffff;
-    background: none;
-    border: none;
-    flex: 1;
-    font-size: 16px;
-    outline: none;
 }

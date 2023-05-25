@@ -1,5 +1,81 @@
-main {
-    background-color: #0e0e0e;
-    overflow: auto;
-    overflow-x: hidden;
+#album-tracks {
+    display: grid;
+    grid-template-columns: 55px auto 50px 50px;
+    padding: 10px;
+    align-items: center;
+}
+
+.track-row {
+    grid-column: 1/-1;
+    grid-column-gap: 20px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: subgrid;
+    height: 60px;
+    padding: 5px;
+}
+
+.track-row:hover {
+    background-color: #272727;
+}
+
+.album-cover {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+
+#album-tracks-header {
+    grid-column: 1/-1;
+    grid-column-gap: 20px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: subgrid;
+    height: 50px;
+    padding: 5px;
+    border-bottom: 1px solid #5a5a5a;
+}
+
+#track-header {
+    grid-column: 1 / span 2;
+    padding-left: 10px;
+}
+
+#duration-header svg {
+    width: 20px;
+    height: 20px;
+}
+
+#duration-header {
+    grid-column: 3 / span 2;
+    padding-left: 5px;
+}
+
+#album-cover-header {
+    width: 250px;
+    height: 250px;
+    background-size: cover;
+    margin-right: 50px;
+}
+
+#album-information {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#album-name {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#album-artist {
+    cursor: pointer;
+    font-size: 1rem;
+    color: #b3b3b3;
+}
+
+#album-artist:hover {
+    text-decoration: underline;
 }
