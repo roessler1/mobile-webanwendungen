@@ -40,9 +40,7 @@ svg {
 }
 
 #track, #artist {
-    color: #ffffff;
     white-space: nowrap;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 0.9rem;
 }
 
