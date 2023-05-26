@@ -63,4 +63,15 @@ class ArtistRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findArtists($search)
+    {
+        $search = '%'.$search.'%';
+        return $this->createQueryBuilder('a')
+            ->where("lower(a.name) LIKE lower(:name)")
+            ->setParameter('name', $search)
+            ->setMaxResults(3)
+            ->getQuery()
+            ->execute();
+    }
 }

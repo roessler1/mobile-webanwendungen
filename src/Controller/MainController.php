@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 
+use App\Repository\AlbumRepository;
+use App\Repository\ArtistRepository;
+use App\Repository\TrackRepository;
 use Detection\MobileDetect;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,5 +49,25 @@ class MainController extends AbstractController
     public function getNotFoundException(): Response
     {
         return $this->render('not_found_exception.html.twig');
+    }
+
+    #[Route('/{_locale<%app.supported_locales%>}/search', name: 'search', options: ['expose'=>true])]
+    public function search(Request $request): Response
+    {
+       if($request->isXmlHttpRequest()) {
+           return new Response($this->twig->resolveTemplate('search.html.twig')->renderBlock('main'));
+       }
+       return $this->render('search.html.twig');
+    }
+
+    #[Route('/results', name: 'results', options: ['expose' => true])]
+    public function results(Request $request, ArtistRepository $artists, AlbumRepository $albums, TrackRepository $tracks): Response
+    {
+        $search = $request->request->get('search');
+        return new Response($this->twig->render('results.html.twig', [
+            'artists' => $artists->findArtists($search),
+            'albums' => $albums->findAlbums($search),
+            'tracks' => $tracks->findTracks($search),
+        ]));
     }
 }
