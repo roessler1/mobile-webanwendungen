@@ -2,9 +2,10 @@
 
 {% block main %}
     <link rel="stylesheet" href="/assets/css/album.css">
+    <link rel="stylesheet" href="/assets/css/album_desktop.css" media="only screen and (min-width: 600px)">
     <div id="album-information">
         <div id="album-cover-header" style="background-image: url('/music/Music{{ album.getCover }}')"></div>
-        <div>
+        <div id="album-credits">
             <div id="album-name">{{ album.name }}</div>
             <a id="album-artist" onclick="loadContent('artist', {{ album.artist.id }})">{{ album.artist.name }}</a>
         </div>
@@ -12,7 +13,7 @@
     <div id="album-tracks">
         <div id="album-tracks-header">
             <div id="track-header">Track</div>
-            <div id="duration-header">
+            <div id="duration-header" class="duration">
                 <svg>
                     <path d="M19,10 A9,9 0 1 0 1,10 a9,9 0 0 0 18,0 z
                              m1,0 A10,10 0 1 1 0,10 a10,10 0 0 1 20,0 z
@@ -29,7 +30,7 @@
             <div class="track-row" onclick="sendData('{{ audio_directory }}'+'{{ tracks_url[loop.index-1] }}')">
                 <div style="background-image: url('/music/Music{{ album.getCover }}')" class="album-cover"></div>
                 <div>{{ loop.index }}. {{ track.name }}</div>
-                <div>
+                <div class="duration">
                     {% set minutes = (track.duration/60)|round(0, 'floor')|ea_as_string ~ ":" %}
                     {% set secondes = (track.duration%60)|ea_as_string %}
                     {% if secondes|length == 1 %}
