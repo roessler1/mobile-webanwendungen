@@ -10,6 +10,7 @@ use Detection\MobileDetect;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\Cache;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
@@ -40,12 +41,14 @@ class MainController extends AbstractController
     }
 
     #[Route('/player/', name: 'player')]
+    #[Cache(maxage: 3600, public: true, mustRevalidate: false)]
     public function getPlayer(): Response
     {
-        return $this->render('player.html.twig')->setMaxAge(86400);
+        return $this->render('player.html.twig');
     }
 
     #[Route('/en/404exception', name: 'not_found_exception')]
+    #[Cache(maxage: 86400, public: true, mustRevalidate: false)]
     public function getNotFoundException(): Response
     {
         return $this->render('not_found_exception.html.twig');
