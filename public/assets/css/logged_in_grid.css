@@ -10,7 +10,7 @@ body {
 @media only screen and (max-width: 600px) and (orientation: portrait) {
     body {
         grid-template-columns: auto;
-        grid-template-rows: auto 60px 80px;
+        grid-template-rows: auto 60px 70px;
         grid-template-areas:
             'main'
             'footer'

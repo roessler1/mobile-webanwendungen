@@ -1,0 +1,56 @@
+#album-tracks {
+    grid-template-columns: 55px auto 50px 50px;
+    padding: 10px;
+}
+
+.duration {
+    display: block;
+}
+
+.track-row:hover {
+    background-color: #272727;
+}
+
+#album-tracks-header {
+    grid-column-gap: 20px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: subgrid;
+}
+
+#track-header {
+    grid-column: 1 / span 2;
+}
+
+#duration-header svg {
+    width: 20px;
+    height: 20px;
+}
+
+#duration-header {
+    grid-column: 3 / span 2;
+    padding-left: 5px;
+}
+
+#album-information {
+    flex-direction: row;
+}
+
+#album-cover-header {
+    width: 21.264%;
+    margin-right: 50px;
+    margin-bottom: 0;
+}
+
+#album-name {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+
+#album-artist:hover {
+    text-decoration: underline;
+}
+
+#album-credits {
+    display: block;
+}

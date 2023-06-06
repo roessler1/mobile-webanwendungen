@@ -63,4 +63,19 @@ class TrackRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function findTracks($search)
+    {
+        $search = '%'.$search.'%';
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.album', 'a')
+            ->leftJoin('a.artist', 'ar')
+            ->where('lower(t.name) LIKE lower(:name)')
+            ->orWhere('lower(a.name) LIKE lower(:name)')
+            ->orWhere('lower(ar.name) LIKE lower(:name)')
+            ->setParameter('name', $search)
+            ->setMaxResults(8)
+            ->getQuery()
+            ->execute();
+    }
 }

@@ -7,6 +7,7 @@ use App\Repository\TrackRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\Cache;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
 
@@ -21,6 +22,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/album/{id}', name: 'album', options: ['expose'=>true])]
+    #[Cache(maxage: 86400, public: false, mustRevalidate: false)]
     public function index(Request $request, Album $album, TrackRepository $trackRepository): Response
     {
         if($request->isXmlHttpRequest()) {

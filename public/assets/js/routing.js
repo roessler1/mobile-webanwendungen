@@ -23,3 +23,20 @@ document.onreadystatechange = () => {
 window.onpopstate = function (event) {
     $('main').html(event.state);
 }
+
+function loadResults() {
+    let search = $('#search').val();
+    if(search.length < 3) {
+        $('#results').html('');
+        return;
+    }
+    let url = Routing.generate('results');
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: {search: search},
+    })
+        .done(function (data) {
+            $('#results').html(data);
+        });
+}

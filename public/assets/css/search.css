@@ -1,0 +1,13 @@
+#search {
+    height: 60px;
+    border:none;
+    border-bottom: 1px solid #353535;
+    background: none;
+    padding: 0 20px;
+    outline: none;
+    width: 100%;
+}
+
+main {
+    padding: 0 0 20px 0;
+}

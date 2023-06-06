@@ -1,0 +1,9 @@
+{% extends 'navigation.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="/assets/css/search.css">
+    <form action="javascript:void(0)">
+        <input placeholder="Search" id="search" onkeyup="loadResults()">
+    </form>
+    <div id="results"></div>
+{% endblock main %}

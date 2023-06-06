@@ -4,11 +4,15 @@ li div {
 
 li {
     display: inline;
-    margin-right: 50px;
-    width: 64px;
-    height: 64px;
+    padding: 0;
 }
 
-svg {
-    viewBox: 0 0 48 48;
+nav ol {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 10px 40px;
+    transform: scale(120%, 120%);
+    margin: 0;
+    height: 100%;
 }
