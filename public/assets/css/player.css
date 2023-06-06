@@ -47,3 +47,15 @@ svg {
 #track {
     font-weight: bold;
 }
+
+#lastbtn {
+    display: none;
+}
+
+#player_seekbar {
+    display: none;
+}
+
+#player_settings {
+    display: none;
+}
