@@ -22,7 +22,6 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/album/{id}', name: 'album', options: ['expose'=>true])]
-    #[Cache(maxage: 86400, public: false, mustRevalidate: false)]
     public function index(Request $request, Album $album, TrackRepository $trackRepository): Response
     {
         if($request->isXmlHttpRequest()) {

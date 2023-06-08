@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Album;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class AlbumCrudController extends AbstractCrudController
@@ -18,6 +19,7 @@ class AlbumCrudController extends AbstractCrudController
     {
         yield AssociationField::new('artist');
         yield TextField::new('name');
+        yield NumberField::new('year_created');
         yield TextField::new('cover');
     }
 }

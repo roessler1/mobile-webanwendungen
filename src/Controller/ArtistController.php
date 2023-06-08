@@ -26,12 +26,12 @@ class ArtistController extends AbstractController
         if($request->isXmlHttpRequest()) {
             return new Response($this->twig->resolveTemplate('artist.html.twig')->renderBlock('main', [
                 'artist' => $artist,
-                'albums' => $albumRepository->findBy(array('artist' => $artist), array('name' => 'ASC')),
+                'albums' => $albumRepository->findBy(array('artist' => $artist), array('year_created' => 'ASC')),
             ]));
         }
         return $this->render('artist.html.twig', [
             'artist' => $artist,
-            'albums' => $albumRepository->findBy(array('artist' => $artist), array('name' => 'ASC')),
+            'albums' => $albumRepository->findBy(array('artist' => $artist), array('year_created' => 'ASC')),
         ]);
     }
 }

@@ -28,6 +28,9 @@ class Album
     #[ORM\OneToMany(mappedBy: 'album', targetEntity: Track::class, orphanRemoval: true)]
     private Collection $tracks;
 
+    #[ORM\Column(nullable: false)]
+    private ?int $year_created = null;
+
     public function __construct()
     {
         $this->tracks = new ArrayCollection();
@@ -107,5 +110,17 @@ class Album
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public function getYearCreated(): ?int
+    {
+        return $this->year_created;
+    }
+
+    public function setYearCreated(?int $year_created): self
+    {
+        $this->year_created = $year_created;
+
+        return $this;
     }
 }
