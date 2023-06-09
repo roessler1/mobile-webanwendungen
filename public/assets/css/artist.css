@@ -1,0 +1,66 @@
+#artist-information {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#artist-cover-header {
+    aspect-ratio: 1/1;
+    width: 50%;
+    background-size: cover;
+    margin-bottom: 10px;
+}
+
+#artist-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+#artist-albums {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    row-gap: 5px;
+}
+
+.album {
+    padding: 10px;
+}
+
+.album-cover {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    margin-bottom: 5px;
+}
+
+.album-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: #b3b3b3;
+    text-align: center;
+}
+
+#artist-divider {
+    margin-top: 10px;
+    color: #b3b3b3;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: baseline;
+    padding-left: 10px;
+}
+
+#line {
+    border-bottom: 1px solid #b3b3b3;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.album-name-wrapper {
+    display: flex;
+    justify-content: center;
+}
