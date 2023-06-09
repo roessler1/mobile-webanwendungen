@@ -1,5 +1,6 @@
 function loadContent(template, id) {
     let url;
+    console.log(typeof id);
     if(typeof id === "number") {
         url = Routing.generate(template, {id: id});
     } else {

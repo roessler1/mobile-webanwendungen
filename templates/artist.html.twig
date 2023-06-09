@@ -1,3 +1,24 @@
 {% extends 'navigation.html.twig' %}
 
-{% block main %}{% endblock main %}
+{% block main %}
+    <link rel="stylesheet" href="/assets/css/artist.css">
+    <link rel="stylesheet" href="/assets/css/artist_desktop.css" media="only screen and (min-width: 600px)">
+    <div id="artist-information">
+        <div id="artist-cover-header" style="background-image: url('/music/Music{{ artist.getPicture }}')"></div>
+        <div id="artist-name">{{ artist.name }}</div>
+    </div>
+    <div id="artist-divider">
+        Albums
+        <div id="line"></div>
+    </div>
+    <div id="artist-albums">
+        {% for album in albums %}
+            <div class="album">
+                <div class="album-cover" style="background-image: url('/music/Music{{ album.getCover }}')" onclick="loadContent('album', {{ album.id }})"></div>
+                <div class="album-name-wrapper">
+                    <div class="album-name" onclick="loadContent('album', {{ album.id }})">{{ album.name }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock main %}
