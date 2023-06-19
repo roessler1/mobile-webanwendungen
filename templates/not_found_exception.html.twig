@@ -1,3 +1,15 @@
-{% extends 'navigation.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block main %}{% endblock main %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/assets/css/not_found_exception.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block main %}
+    <div id="errPage">
+        <li id="listStyle">
+            <h1>ERROR 404</h1>
+                <h2> The Page you're looking for does not exist...</h2>
+        </li>
+    </div>
+{% endblock main %}
