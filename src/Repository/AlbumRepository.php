@@ -72,7 +72,8 @@ class AlbumRepository extends ServiceEntityRepository
             ->where('lower(a.name) LIKE lower(:name)')
             ->orWhere('lower(ar.name) LIKE lower(:name)')
             ->setParameter('name', $search)
-            ->setMaxResults(5)
+            ->orderBy('a.year_created', 'ASC')
+            ->setMaxResults(4)
             ->getQuery()
             ->execute();
     }

@@ -1,9 +1,57 @@
-{% for artist in artists %}
-    <div>{{ artist.name }}</div>
-{% endfor %}
-{% for album in albums %}
-    <div>{{ album.name }}</div>
-{% endfor %}
-{% for track in tracks %}
-    <div>{{ track.name }}</div>
-{% endfor %}
+<link rel="stylesheet" href="/assets/css/results.css">
+{% if artists is not empty %}
+<div class="result-divider">
+    {{ 'Artists'|trans }}
+    <div class="line"></div>
+</div>
+<div class="grid-results">
+    {% for artist in artists %}
+        <div class="show-grid-result">
+            <div class="cover-result" style="background-image: url('{{ audio_directory ~ artist.picture }}')"
+                 onclick="loadContent('artist', {{ artist.id }})"></div>
+            <div class="name-result-wrapper">
+                <div class="name-result">{{ artist.name }}</div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% if albums is not empty %}
+<div class="result-divider">
+    {{ 'Albums'|trans }}
+    <div class="line"></div>
+</div>
+<div class="grid-results">
+    {% for album in albums %}
+        <div class="show-grid-result">
+            <div class="cover-result" style="background-image: url('{{ audio_directory ~ album.cover }}')"></div>
+            <div class="name-result-wrapper">
+                <div class="name-result">{{ album.name }}</div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% if tracks is not empty %}
+<div class="result-divider">
+    {{ 'Tracks'|trans }}
+    <div class="line"></div>
+</div>
+<div id="track-results">
+    {% for track in tracks %}
+        <div class="table-row" onclick="sendData('{{ audio_directory }}' + '{{ track.path }}')">
+            <div class="album-cover" style="background-image: url('{{ audio_directory ~ track.album.cover }}')"></div>
+            <div>{{ loop.index }}. {{ track.name }}</div>
+            <div class="duration">
+                {% set minutes = (track.duration/60)|round(0, 'floor')|ea_as_string ~ ":" %}
+                {% set secondes = (track.duration%60)|ea_as_string %}
+                {% if secondes|length == 1 %}
+                    {% set secondes = "0" ~ secondes %}
+                {% endif %}
+                {% set duration = minutes ~ secondes %}
+                {{ duration }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

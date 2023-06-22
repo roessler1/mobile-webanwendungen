@@ -74,7 +74,7 @@ class TrackRepository extends ServiceEntityRepository
             ->orWhere('lower(a.name) LIKE lower(:name)')
             ->orWhere('lower(ar.name) LIKE lower(:name)')
             ->setParameter('name', $search)
-            ->setMaxResults(8)
+            ->setMaxResults(10)
             ->getQuery()
             ->execute();
     }
