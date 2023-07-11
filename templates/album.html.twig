@@ -22,12 +22,15 @@
                 </svg>
             </div>
         </div>
-        {% set tracks_url = {} %}
+        {% set tracks_json = {} %}
         {% for track in tracks %}
-            {% set tracks_url = tracks_url|merge([track.path]) %}
+            {% set tracks_json = tracks_json|merge([{name: track.name, path: audio_directory~track.path,
+                duration: track.duration, number: track.getTrackNumber,
+                album: {name: track.album.name, cover: audio_directory~track.album.cover},
+                artist: {name: track.album.artist.name, id: track.album.artist.id}}]) %}
         {% endfor %}
         {% for track in tracks %}
-            <div class="track-row" onclick="sendData('{{ audio_directory }}'+'{{ tracks_url[loop.index-1] }}')">
+            <div class="track-row" onclick="setQueue({{ tracks_json|json_encode }}, {{ loop.index-1 }})">
                 <div style="background-image: url('/music/Music{{ album.getCover }}')" class="album-cover"></div>
                 <div>{{ loop.index }}. {{ track.name }}</div>
                 <div class="duration">

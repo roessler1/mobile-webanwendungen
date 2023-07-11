@@ -59,6 +59,19 @@
     left: 0;
 }
 
+#slider-pos {
+    height: 2px;
+    width: calc(100% + 16px);
+    z-index: 1;
+    opacity: 0.1;
+    position: absolute;
+    left: -10px;
+}
+
+#progressbar:hover > div, #progressbar:hover > input {
+    height: 4px;
+}
+
 #player_track {
     min-width: 120px;
     width: 18.5%;
@@ -74,4 +87,10 @@
     height: 26px;
     width: 28px;
     margin: 0 5px;
+}
+
+#repeat_mode {
+    --no_repeat: M0,8 h18 v2 h-18 z;
+    --all_repeat: M9,1 a8,8 0 0 0 0,16 a8,8 0 1 0 0,-16 z m0,2 a6,6 0 1 1 0,12 a6,6 0 0 1 0,-12 z;
+    --one_repeat: M9,0 v16 h-2 v-12 l-3,2.5 l-1.3,-1.5 z;
 }

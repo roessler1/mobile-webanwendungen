@@ -1,3 +1,4 @@
+<script type="text/javascript" src="/assets/js/player.js"></script>
 <footer>
     <div id="player_track">
         <div id="track">Thanks For Asking</div>
@@ -9,6 +10,7 @@
             <div id="progressbar">
                 <div id="slider"></div>
                 <div id="active-slider"></div>
+                <input type="range" step="0.1" min="0" max="0" id="slider-pos">
             </div>
             <div id="duration">3:18</div>
         </div>
@@ -21,9 +23,9 @@
                          M0,11 h6 v2 h-6 z"/>
             </svg>
         </button>
-        <button>
-            <svg id="track_repeat">
-                <path d="M0,8 h18 v2 h-18 z"/>
+        <button  id="track_repeat">
+            <svg>
+                <path d="M0,8 h18 v2 h-18 z" id="repeat_mode"/>
             </svg>
         </button>
         <button id="track_volume">
