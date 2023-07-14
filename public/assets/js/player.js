@@ -10,6 +10,8 @@
                 clearInterval(timeUpdate);
                 playNext();
             });
+            let play = document.getElementById('play');
+            play.setAttribute('d', getComputedStyle(play).getPropertyValue('--playing'))
         }
         timeUpdate = setInterval(updateProgress, 50);
         audio.type = blob.type;
@@ -19,12 +21,17 @@
 
     const updateProgress = () => {
         document.getElementById("active-slider").style.width = ((audio.currentTime * 100) / audio.duration) + "%";
-        document.getElementById('slider-pos').setAttribute("value", audio.currentTime);
+        document.getElementById('slider-pos').value = audio.currentTime;
         let min = Math.floor(audio.currentTime/60);
         let sec = Math.floor(audio.currentTime%60);
         if(sec < 10)
             sec = "0"+sec;
         document.getElementById("counter").innerHTML = min + ":" + sec;
+    }
+
+    function setCurrentTime() {
+        let val = document.getElementById('slider-pos').value;
+        audio.currentTime = val;
     }
 
     function suspend() {
@@ -395,5 +402,6 @@ document.onreadystatechange = function () {
         document.getElementById('playbtn').addEventListener('click', togglePlayback);
         document.getElementById('track_repeat').addEventListener('click', changeMode);
         document.getElementById('track_order').addEventListener('click', shuffle);
+        document.getElementById('slider-pos').addEventListener('input', setCurrentTime);
     }
 }

@@ -61,6 +61,6 @@ svg {
 }
 
 #play {
-    --playing: M0,0 l18,11 l-18,11 z;
-    --paused: M1,0 v22 h5 v-22 M12,0 v22 h5 v-22 z;
+    --paused: M0,0 l18,11 l-18,11 z;
+    --playing: M1,0 v22 h5 v-22 M12,0 v22 h5 v-22 z;
 }

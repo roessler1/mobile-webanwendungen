@@ -63,7 +63,7 @@
     height: 2px;
     width: calc(100% + 16px);
     z-index: 1;
-    opacity: 0.1;
+    opacity: 0;
     position: absolute;
     left: -10px;
 }
