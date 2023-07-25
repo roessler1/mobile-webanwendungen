@@ -73,4 +73,22 @@ class MainController extends AbstractController
             'tracks' => $tracks->findTracks($search),
         ]));
     }
+
+    #[Route('/{_locale<%app.supported_locales%>}/home', name: 'home')]
+    public function home(): Response
+    {
+        return $this->render('homepage.html.twig');
+    }
+
+    #[Route('/{_locale<%app.supported_locales%>}/signin', name: 'signin')]
+    public function signin(): Response
+    {
+        return $this->render('signin.html.twig');
+    }
+
+    #[Route('/{_locale<%app.supported_locales%>}/signup', name: 'signup')]
+    public function signup(): Response
+    {
+        return $this->render('signup.html.twig');
+    }
 }

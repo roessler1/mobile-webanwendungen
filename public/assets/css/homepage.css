@@ -1,0 +1,41 @@
+a {
+    text-decoration: none;
+    background-color: #000000;
+    color: #2e3864;
+    border-radius: 12px;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid darkslategrey;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid darkslategrey;
+}
+
+#divTop {
+    height: 7%;
+    background-color: #1b1b1b;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+#divBot {
+    height: 90%;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 10px;
+    background-color: black;
+    background-image: url("../../images/homepage_background.jpg");
+    background-size: cover;
+}
+
+#middleBox {
+    background-color: lightgrey;
+    opacity: 50%;
+    width: 50%;
+    text-align: center;
+    border: 3px solid #ff4500;
+    color: darkblue;
+    align-self: center;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+}

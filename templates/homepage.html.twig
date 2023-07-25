@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="/assets/css/homepage.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body %}
+    <div id="divTop">
+        <a href="{{ path('signin') }}">Sign in</a>
+        <a href="{{ path('signup') }}">Sign up</a>
+    </div>
+    <div id="divBot">
+        <div id="middleBox">
+            Welcome
+        </div>
+    </div>
+{% endblock body %}
