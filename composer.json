@@ -13,6 +13,7 @@
         "doctrine/orm": "^2.14",
         "easycorp/easyadmin-bundle": "^4",
         "friendsofsymfony/jsrouting-bundle": "^3.2",
+        "james-heinrich/getid3": "^1.9",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.17",
         "sensio/framework-extra-bundle": "^6.1",
@@ -46,7 +47,8 @@
         "symfony/web-link": "6.2.*",
         "symfony/yaml": "6.2.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/intl-extra": "^3",
+        "twig/intl-extra": "^3.6",
+        "twig/string-extra": "^3.6",
         "twig/twig": "^2.12|^3.0"
     },
     "config": {
