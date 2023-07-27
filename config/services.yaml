@@ -23,6 +23,9 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Command\DatabaseReinitializeCommand:
+        $audio_directory: '%env(AUDIO_DIRECTORY)%'
+
     app.listener.route_not_found:
         class: App\EventListener\RouteNotFoundListener
         arguments:

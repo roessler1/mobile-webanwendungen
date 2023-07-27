@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Track;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -77,5 +78,15 @@ class TrackRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->execute();
+    }
+
+    public function resetTrackDB(): int
+    {
+        return $this->getQueryBuilder()->delete()->getQuery()->execute();
+    }
+
+    private function getQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('t');
     }
 }

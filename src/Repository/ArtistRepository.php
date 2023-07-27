@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Artist;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use function Symfony\Component\Translation\t;
 
 /**
  * @extends ServiceEntityRepository<Artist>
@@ -37,6 +39,16 @@ class ArtistRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function resetArtistDB(): int
+    {
+        return $this->getQueryBuilder()->delete()->getQuery()->execute();
+    }
+
+    private function getQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('ar');
     }
 
 //    /**

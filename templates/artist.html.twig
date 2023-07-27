@@ -7,6 +7,7 @@
         <div id="artist-cover-header" style="background-image: url('/music/Music{{ artist.getPicture }}')"></div>
         <div id="artist-name">{{ artist.name }}</div>
     </div>
+    {% if albums is not empty %}
     <div id="artist-divider">
         {{ 'Albums'|trans }}
         <div id="line"></div>
@@ -21,4 +22,38 @@
             </div>
         {% endfor %}
     </div>
+    {% endif %}
+    {% if eps is not empty %}
+    <div id="artist-divider">
+        {{ "EP's"|trans }}
+        <div id="line"></div>
+    </div>
+        {{ app.request.locale }}
+    <div id="artist-albums">
+        {% for ep in eps %}
+            <div class="album">
+                <div class="album-cover" style="background-image: url('/music/Music{{ ep.getCover }}')" onclick="loadContent('album', {{ ep.id }})"></div>
+                <div class="album-name-wrapper">
+                    <div class="album-name" onclick="loadContent('album', {{ ep.id }})">{{ ep.name }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if singles is not empty %}
+    <div id="artist-divider">
+        {{ 'Singles'|trans }}
+        <div id="line"></div>
+    </div>
+    <div id="artist-albums">
+        {% for single in singles %}
+            <div class="album">
+                <div class="album-cover" style="background-image: url('/music/Music{{ single.getCover }}')" onclick="loadContent('album', {{ single.id }})"></div>
+                <div class="album-name-wrapper">
+                    <div class="album-name" onclick="loadContent('album', {{ single.id }})">{{ single.name }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 {% endblock main %}
