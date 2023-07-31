@@ -13,6 +13,22 @@
         <source>Albums</source>
         <target>Albums</target>
       </trans-unit>
+      <trans-unit id="yyEENeH" resname="EP's">
+        <source>EP's</source>
+        <target>EP's</target>
+      </trans-unit>
+      <trans-unit id="9c18e_N" resname="Singles">
+        <source>Singles</source>
+        <target>Singles</target>
+      </trans-unit>
+      <trans-unit id="lOPopEB" resname="Artists">
+        <source>Artists</source>
+        <target>Artists</target>
+      </trans-unit>
+      <trans-unit id="iJgBVFE" resname="Tracks">
+        <source>Tracks</source>
+        <target>Tracks</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,25 +1,25 @@
 #album-tracks {
-    grid-template-columns: 55px auto 50px 50px;
-    padding: 10px;
+    grid-template-columns: auto;
+    padding: 10px 30px;
 }
 
 .duration {
     display: block;
 }
 
+.track-row {
+    grid-template-columns: 55px auto 50px 50px
+}
+
 .track-row:hover {
-    background-color: #272727;
+    background-color: #1d1d1d;
 }
 
 #album-tracks-header {
     grid-column-gap: 20px;
     display: grid;
     align-items: center;
-    grid-template-columns: subgrid;
-}
-
-#track-header {
-    grid-column: 1 / span 2;
+    grid-template-columns: auto 120px;
 }
 
 #duration-header svg {
@@ -28,7 +28,6 @@
 }
 
 #duration-header {
-    grid-column: 3 / span 2;
     padding-left: 5px;
 }
 
@@ -53,4 +52,38 @@
 
 #album-credits {
     display: block;
+}
+
+.option-button {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.submenu {
+    padding: 10px 0;
+    display: none;
+    background-color: rgba(52, 52, 52, 0.98);
+    position: absolute;
+    right: 100%;
+    bottom: 20%;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+.submenu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.submenu ul li {
+    padding: 0;
+    cursor: pointer;
+}
+
+.submenu ul li a {
+    display: block;
+    padding: 8px 10px;
 }
