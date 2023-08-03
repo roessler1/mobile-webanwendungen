@@ -122,7 +122,7 @@ class MainController extends AbstractController
         $password = $request->request->get('password');
         $retypedPassword = $request->request->get('retypedPassword');
 
-        if($password === $retypedPassword && $users->findUser($username) != []) {
+        if($password === $retypedPassword && $users->findUser($username) != "") {
             $USER_ROW = "INSERT INTO users(id, username, password, admin, last_artists, last_albums) VALUES(nextval('users_id_seq'),  E'$username', 
                                              E'$password', false, '{}', '{}')";
             $statement = $this->doctrine->getConnection()->prepare($USER_ROW);
