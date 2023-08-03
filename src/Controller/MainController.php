@@ -36,7 +36,7 @@ class MainController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/', name: 'homepage', options: ['expose'=>true])]
     public function index(Request $request, UsersRepository $users): Response
     {
-        if($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) != "") {
+        if($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) != []) {
             $_locale = 'en';
             if ($request->isXmlHttpRequest()) {
                 return new Response($this->twig->resolveTemplate('index.html.twig')->renderBlock('main'));
@@ -64,7 +64,7 @@ class MainController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/search', name: 'search', options: ['expose'=>true])]
     public function search(Request $request, UsersRepository $users): Response
     {
-        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) != "") {
+        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) != []) {
             if ($request->isXmlHttpRequest()) {
                 return new Response($this->twig->resolveTemplate('search.html.twig')->renderBlock('main'));
             }
@@ -88,7 +88,7 @@ class MainController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/home', name: 'home')]
     public function home(Request $request, UsersRepository $users): Response
     {
-        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) === "") {
+        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) === []) {
             return $this->render('homepage.html.twig');
         } else {
             return $this->redirectToRoute('homepage');
@@ -98,7 +98,7 @@ class MainController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/signin', name: 'signin')]
     public function signin(Request $request, UsersRepository $users): Response
     {
-        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) === "") {
+        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) === []) {
             return $this->render('signin.html.twig');
         } else {
             return $this->redirectToRoute('homepage');
@@ -108,7 +108,7 @@ class MainController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/signup', name: 'signup')]
     public function signup(Request $request, UsersRepository $users): Response
     {
-        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) === "") {
+        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) === []) {
             return $this->render('signup.html.twig');
         } else {
             return $this->redirectToRoute('homepage');
@@ -122,7 +122,12 @@ class MainController extends AbstractController
         $password = $request->request->get('password');
         $retypedPassword = $request->request->get('retypedPassword');
 
-        if($password === $retypedPassword && $users->findUser($username) != "") {
+        if($password === $retypedPassword && $users->findUser($username) != []) {
+            $USER_ROW = "INSERT INTO users(id, username, password, admin, last_artists, last_albums) VALUES(nextval('users_id_seq'),  E'$username', 
+                                             E'$password', false, '{}', '{}')";
+            $statement = $this->doctrine->getConnection()->prepare($USER_ROW);
+            $statement->execute();
+
             $cookie = new Cookie(
                 'username',
                 $username,
@@ -139,11 +144,6 @@ class MainController extends AbstractController
             $response->headers->setCookie($cookie);
             $response->send();
 
-            $USER_ROW = "INSERT INTO users(id, username, password, admin, last_artists, last_albums) VALUES(nextval('users_id_seq'),  E'$username', 
-                                             E'$password', false, '{}', '{}')";
-            $statement = $this->doctrine->getConnection()->prepare($USER_ROW);
-            $statement->execute();
-
             return $this->redirectToRoute('homepage');
         }
         return $this->redirectToRoute('signup');
@@ -155,7 +155,7 @@ class MainController extends AbstractController
         $username = $request->request->get('username');
         $password = $request->request->get('password');
 
-        if($users->checkIdentity($username, $password) != "") {
+        if($users->checkIdentity($username, $password) != []) {
             $cookie = new Cookie(
                 'username',
                 $username,
@@ -175,5 +175,16 @@ class MainController extends AbstractController
             return $this->redirectToRoute('homepage');
         }
         return $this->redirectToRoute('signin');
+    }
+
+    #[Route('/signout', name: 'signout')]
+    public function signout(): RedirectResponse
+    {
+        $response = new Response();
+        $response->headers->clearCookie('username');
+        $response->headers->clearCookie('password');
+        $response->send();
+
+        return $this->redirectToRoute('home');
     }
 }

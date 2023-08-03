@@ -24,7 +24,7 @@ class ArtistController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/artist/{id}', name: 'artist', options: ['expose' => true])]
     public function index(Request $request, Artist $artist, AlbumRepository $albumRepository, UsersRepository $users): Response
     {
-        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) != "") {
+        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) != []) {
             if ($request->isXmlHttpRequest()) {
                 return new Response($this->twig->resolveTemplate('artist.html.twig')->renderBlock('main', [
                     'artist' => $artist,

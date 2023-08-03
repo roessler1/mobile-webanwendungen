@@ -25,7 +25,7 @@ class AlbumController extends AbstractController
     #[Route('/{_locale<%app.supported_locales%>}/album/{id}', name: 'album', options: ['expose'=>true])]
     public function index(Request $request, Album $album, TrackRepository $trackRepository, UsersRepository $users): Response
     {
-        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) != "") {
+        if ($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) != []) {
             if ($request->isXmlHttpRequest()) {
                 return new Response($this->twig->resolveTemplate('album.html.twig')->renderBlock('main', [
                     'album' => $album,
