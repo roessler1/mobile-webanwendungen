@@ -20,18 +20,22 @@ class ArtistController extends AbstractController
         $this->twig = $twig;
     }
 
-    #[Route('/{_locale<%app.supported_locales%>}/artist/{id}', name: 'artist', options: ['expose'=>true])]
+    #[Route('/{_locale<%app.supported_locales%>}/artist/{id}', name: 'artist' ,options: ['expose'=>true])]
     public function index(Request $request, Artist $artist, AlbumRepository $albumRepository): Response
     {
         if($request->isXmlHttpRequest()) {
             return new Response($this->twig->resolveTemplate('artist.html.twig')->renderBlock('main', [
                 'artist' => $artist,
-                'albums' => $albumRepository->findBy(array('artist' => $artist), array('year_created' => 'ASC')),
+                'albums' => $albumRepository->findArtistAlbums($artist),
+                'eps' => $albumRepository->findArtistEPs($artist),
+                'singles' => $albumRepository->findArtistSingles($artist),
             ]));
         }
         return $this->render('artist.html.twig', [
             'artist' => $artist,
-            'albums' => $albumRepository->findBy(array('artist' => $artist), array('year_created' => 'ASC')),
+            'albums' => $albumRepository->findArtistAlbums($artist),
+            'eps' => $albumRepository->findArtistEPs($artist),
+            'singles' => $albumRepository->findArtistSingles($artist),
         ]);
     }
 }

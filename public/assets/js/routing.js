@@ -14,12 +14,6 @@ function loadContent(template, id) {
         });
 }
 
-document.onreadystatechange = () => {
-    if(document.readyState === "complete") {
-        window.history.replaceState($('main').html(), document.title, document.documentURI);
-    }
-}
-
 window.onpopstate = function (event) {
     $('main').html(event.state);
 }

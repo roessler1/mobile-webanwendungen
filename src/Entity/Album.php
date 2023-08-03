@@ -31,6 +31,12 @@ class Album
     #[ORM\Column(nullable: false)]
     private ?int $year_created = null;
 
+    #[ORM\Column(nullable: false)]
+    private ?bool $ep = null;
+
+    #[ORM\Column(nullable: false)]
+    private ?bool $single = null;
+
     public function __construct()
     {
         $this->tracks = new ArrayCollection();
@@ -120,6 +126,30 @@ class Album
     public function setYearCreated(?int $year_created): self
     {
         $this->year_created = $year_created;
+
+        return $this;
+    }
+
+    public function isEp(): ?bool
+    {
+        return $this->ep;
+    }
+
+    public function setEp(?bool $ep): self
+    {
+        $this->ep = $ep;
+
+        return $this;
+    }
+
+    public function isSingle(): ?bool
+    {
+        return $this->single;
+    }
+
+    public function setSingle(?bool $single): self
+    {
+        $this->single = $single;
 
         return $this;
     }

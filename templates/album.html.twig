@@ -3,7 +3,9 @@
 {% block main %}
     <link rel="stylesheet" href="/assets/css/album.css">
     <link rel="stylesheet" href="/assets/css/album_desktop.css" media="only screen and (min-width: 600px)">
+    <script type="text/javascript" src="/assets/js/submenu.js"></script>
     <div id="album-information">
+        <div id="information-background" style="background-image: url('/music/Music{{ album.getCover }}')"></div>
         <div id="album-cover-header" style="background-image: url('/music/Music{{ album.getCover }}')"></div>
         <div id="album-credits">
             <div id="album-name">{{ album.name }}</div>
@@ -42,7 +44,27 @@
                     {% set duration = minutes ~ secondes %}
                     {{ duration }}
                 </div>
+                <div class="option-button">
+                    <svg class="more_options">
+                        <path d="M16,23 a2,2 0 0 0 0,4 a2,2 0 1 0 0,-4 z
+                            m7,0 a2,2 0 0 0 0,4 a2,2 0 1 0 0,-4 z
+                            m7,0 a2,2 0 0 0 0,4 a2,2 0 1 0 0,-4 z"/>
+                    </svg>
+                    <div class="submenu">
+                        <ul>
+                            <li onclick="addNext({{ tracks_json[loop.index-1]|json_encode }})">
+                                <a role="button" tabindex="-1">play next</a>
+                            </li>
+                            <li onclick="expandQueue({{ tracks_json[loop.index-1]|json_encode }})">
+                                <a role="button">add to queue</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         {% endfor %}
+        <script>
+            loadEvents();
+        </script>
     </div>
 {% endblock main %}

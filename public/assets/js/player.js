@@ -57,6 +57,10 @@
             suspend();
         }
     }
+
+    function hasFinished() {
+        return audio.ended;
+    }
 }
 
 //media session related tasks
@@ -135,6 +139,9 @@
     let random = false;
 
     function setQueue(tracks, idx) {
+        for(let i = 0; i < tracks.length; i++) {
+            tracks[i].nr = i;
+        }
         queue = tracks;
         currentTrack = idx;
         loadedBuffers.length = 0;
@@ -147,6 +154,41 @@
         }).then(() => {
             loadSurrounded();
         });
+    }
+
+    function expandQueue(track) {
+        if(queue.length === 0) {
+            setQueue([track], 0);
+            return;
+        }
+        track.nr = queue.length;
+        queue.push(track);
+        if(currentTrack === queue.length - 2) {
+            fetchTrack(track.path).then((nextBuffer) => {
+                loadedBuffers[2] = nextBuffer;
+            });
+        }
+        if(currentTrack === 0 && mode === 1) {
+            fetchTrack(track.path).then((lastBuffer) => {
+                loadedBuffers[0] = lastBuffer;
+            });
+        }
+    }
+
+    function addNext(track) {
+        if(queue.length === 0) {
+            setQueue([track], 0);
+            return;
+        }
+        track.nr = currentTrack+1;
+        fetchTrack(track.path).then((nextBuffer) => {
+            loadedBuffers[2] = nextBuffer;
+            queue.splice(currentTrack+1, 0, track);
+            if(hasFinished()) playNext();
+        });
+        for (const queuedTrack in queue) {
+            if(queuedTrack.nr > currentTrack) queuedTrack.nr = queuedTrack.nr+1;
+        }
     }
 
     function playNext() {
@@ -350,7 +392,7 @@
                 currentTrack = queue[currentTrack].number-1;
             }
             queue.sort(function(a, b) {
-                return a.number - b.number;
+                return a.nr - b.nr;
             });
             document.getElementById("track_order").style.fill = '#ffffff';
             if(loadedBuffers.length === 3)
@@ -397,6 +439,7 @@
 
 document.onreadystatechange = function () {
     if(document.readyState === 'complete') {
+        window.history.replaceState($('main').html(), document.title, document.documentURI);
         document.getElementById('lastbtn').addEventListener('click', previous);
         document.getElementById('nextbtn').addEventListener('click', next);
         document.getElementById('playbtn').addEventListener('click', togglePlayback);

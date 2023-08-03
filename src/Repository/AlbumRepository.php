@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Album;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -76,5 +77,51 @@ class AlbumRepository extends ServiceEntityRepository
             ->setMaxResults(4)
             ->getQuery()
             ->execute();
+    }
+
+    public function findArtistAlbums($artist)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.artist = :artist')
+            ->setParameter('artist', $artist)
+            ->andWhere('a.ep = false')
+            ->andWhere('a.single = false')
+            ->orderBy('a.year_created', 'ASC')
+            ->getQuery()
+            ->execute();
+    }
+
+    public function findArtistEPs($artist)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.artist = :artist')
+            ->setParameter('artist', $artist)
+            ->andWhere('a.ep = true')
+            ->andWhere('a.single = false')
+            ->orderBy('a.year_created', 'ASC')
+            ->getQuery()
+            ->execute();
+    }
+
+    public function findArtistSingles($artist)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.artist = :artist')
+            ->setParameter('artist', $artist)
+            ->andWhere('a.ep = false')
+            ->andWhere('a.single = true')
+            ->orderBy('a.year_created', 'ASC')
+            ->getQuery()
+            ->execute();
+    }
+
+    public function resetAlbumDB(): int
+    {
+        return $this->getQueryBuilder()->delete()->getQuery()->execute();
+    }
+
+    private function getQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('al');
     }
 }
