@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\UsersRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\Table(name: '`user`')]
-class User
+#[ORM\Entity(repositoryClass: UsersRepository::class)]
+class Users
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,6 +22,12 @@ class User
 
     #[ORM\Column]
     private ?bool $admin = null;
+
+    #[ORM\Column(type: Types::SIMPLE_ARRAY)]
+    private array $lastArtists = [];
+
+    #[ORM\Column(type: Types::SIMPLE_ARRAY)]
+    private array $lastAlbums = [];
 
     public function getId(): ?int
     {
@@ -60,6 +66,30 @@ class User
     public function setAdmin(bool $admin): self
     {
         $this->admin = $admin;
+
+        return $this;
+    }
+
+    public function getLastArtists(): array
+    {
+        return $this->lastArtists;
+    }
+
+    public function setLastArtists(?array $lastArtists): self
+    {
+        $this->lastArtists = $lastArtists;
+
+        return $this;
+    }
+
+    public function getLastAlbums(): array
+    {
+        return $this->lastAlbums;
+    }
+
+    public function setLastAlbums(?array $lastAlbums): self
+    {
+        $this->lastAlbums = $lastAlbums;
 
         return $this;
     }
