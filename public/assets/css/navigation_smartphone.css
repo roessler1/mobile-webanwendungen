@@ -2,6 +2,10 @@ li div a {
     display: none;
 }
 
+li a {
+    display: none;
+}
+
 li {
     display: inline;
     padding: 0;
