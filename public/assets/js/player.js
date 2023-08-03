@@ -61,6 +61,10 @@
     function hasFinished() {
         return audio.ended;
     }
+
+    function muteAudio() {
+        !audio.muted;
+    }
 }
 
 //media session related tasks
@@ -446,5 +450,6 @@ document.onreadystatechange = function () {
         document.getElementById('track_repeat').addEventListener('click', changeMode);
         document.getElementById('track_order').addEventListener('click', shuffle);
         document.getElementById('slider-pos').addEventListener('input', setCurrentTime);
+        document.getElementById('track_volume').addEventListener('click', muteAudio);
     }
 }
