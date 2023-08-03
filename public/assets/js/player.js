@@ -63,7 +63,7 @@
     }
 
     function muteAudio() {
-        !audio.muted;
+        audio.muted = !audio.muted;
     }
 }
 
