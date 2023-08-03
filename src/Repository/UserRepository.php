@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -63,4 +64,15 @@ class UserRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+    public function findUser($search)
+    {
+        $search = '%'.$search.'%';
+        return $this->createQueryBuilder('a')
+            ->where("username = :name")
+            ->setParameter('name', $search)
+            ->getQuery()
+            ->execute();
+    }
 }

@@ -6,7 +6,11 @@ namespace App\Controller;
 use App\Repository\AlbumRepository;
 use App\Repository\ArtistRepository;
 use App\Repository\TrackRepository;
+use App\Repository\UserRepository;
 use Detection\MobileDetect;
+use Doctrine\ORM\NonUniqueResultException;
+use http\Cookie;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -90,5 +94,34 @@ class MainController extends AbstractController
     public function signup(): Response
     {
         return $this->render('signup.html.twig');
+    }
+
+    #[Route('/signup', name: 'createUser')]
+    public function createUser(Request $request, UserRepository $users): RedirectResponse
+    {
+        $username = $request->request->get('username');
+        $password = $request->request->get('password');
+        $retypedPassword = $request->request->get('retypedPassword');
+        echo $username . ", " . $password . ", " . $retypedPassword;
+
+        if($password === $retypedPassword && $users->findUser($username) != null) {
+            $cookie = new Cookie(
+                'username',
+                $username,
+                time() + (30 * 24 * 60 * 60)
+            );
+            $response = new Response();
+            $response->headers->setCookie($cookie);
+
+            $cookie = new Cookie(
+                'password',
+                $password,
+                time() + (30 * 24 * 60 * 60)
+            );
+            $response->headers->setCookie($cookie);
+            $response->send();
+            return $this->redirectToRoute('homepage');
+        }
+        return $this->redirectToRoute('signup');
     }
 }
