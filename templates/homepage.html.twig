@@ -12,6 +12,17 @@
     </div>
     <div id="divBot">
         <div id="middleBox">
+                <p>Wir verwenden Cookies, um Ihnen das bestmögliche Erlebnis auf unserer Website zu bieten.</p>
+            <div>
+                <div id="bannerButton" onclick="hideBanner()">
+                    Verstanden
+                </div>
+            </div>
         </div>
+        <script>
+            function hideBanner() {
+                document.getElementById('middleBox').style.display = 'none';
+            }
+        </script>
     </div>
 {% endblock body %}

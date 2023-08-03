@@ -19,22 +19,42 @@ a {
 }
 
 #divBot {
-    height: 90%;
+    height: 100%;
     text-align: right;
-    padding-right: 10px;
-    padding-top: 10px;
     background-color: black;
     background-image: url("../../images/homepage_background.jpg");
+    background-repeat: no-repeat;
     background-size: cover;
+    position: relative;
 }
 
 #middleBox {
     background-color: lightgrey;
-    opacity: 50%;
+    opacity: 90%;
     width: 50%;
     text-align: center;
     color: darkblue;
-    align-self: center;
-    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    bottom: 10%;
+    position: absolute;
+    right: 25%;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+#bannerButton {
+    text-decoration: none;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid darkslategrey;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid darkslategrey;
+}
+
+#middleBox > div {
+    display: flex;
+    justify-content: center;
 }
