@@ -2,7 +2,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="/assets/css/signin.css" rel="stylesheet">
+    <link href="/assets/css/signin_desktop.css" rel="stylesheet" media="only screen and (min-width: 600px)">
+    <link href="/assets/css/signin_smartphone.css" rel="stylesheet" media="only screen and (max-width: 600px)">
 {% endblock stylesheets %}
 
 {% block body %}

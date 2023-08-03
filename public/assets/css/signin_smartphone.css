@@ -1,0 +1,84 @@
+a {
+    text-decoration: none;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid darkslategrey;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid darkslategrey;
+}
+
+#divTop {
+    height: 7%;
+    background-color: #1b1b1b;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+#divBot {
+    height: 100%;
+    text-align: right;
+    padding-top: 10px;
+    background-color: black;
+    background-image: url("../../images/homepage_background.jpg");
+    background-size: cover;
+}
+
+#middleBox {
+    background-color: lightgrey;
+    opacity: 100%;
+    width: 100%;
+    text-align: center;
+    color: darkblue;
+    align-self: center;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#signinBox {
+    background-color: darkgrey;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    text-align: left;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    background-color: #991b1b;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #690e0e;
+}
