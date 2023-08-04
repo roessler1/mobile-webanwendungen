@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Users;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use function Symfony\Component\Translation\t;
 
 /**
  * @extends ServiceEntityRepository<Users>
@@ -79,6 +80,15 @@ class UsersRepository extends ServiceEntityRepository
             ->setParameter('name', $username)
             ->andWhere("u.password = :password")
             ->setParameter('password', $password)
+            ->getQuery()
+            ->execute();
+    }
+
+    public function getLastAlbums($username) {
+        return $this->createQueryBuilder('u')
+            ->select('u.lastAlbums')
+            ->where("u.username = :name")
+            ->setParameter('name', $username)
             ->getQuery()
             ->execute();
     }

@@ -1,0 +1,43 @@
+#last-albums {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    row-gap: 5px;
+}
+
+#line {
+    border-bottom: 1px solid #b3b3b3;
+    width: 100%;
+    margin-left: 10px;
+}
+
+#album-divider {
+    margin-top: 10px;
+    color: #b3b3b3;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: baseline;
+    padding-left: 10px;
+    white-space: nowrap;
+}
+
+.album-cover {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    margin-bottom: 5px;
+}
+
+.album-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: #b3b3b3;
+    text-align: center;
+}
+
+.album-name-wrapper {
+    display: flex;
+    justify-content: center;
+}

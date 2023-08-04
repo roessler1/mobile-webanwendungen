@@ -324,6 +324,13 @@
             loadTrack(new Blob([loadedBuffers[1]], {type: 'audio/flac'}));
         } else
             return;
+        let url;
+        url = Routing.generate('lastalbum');
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {alb_id: queue[currentTrack].album.id},
+        })
         document.getElementById('slider-pos').setAttribute("max", queue[currentTrack].duration);
         setMetadata(queue[currentTrack]);
         if(currentTrack === 0)

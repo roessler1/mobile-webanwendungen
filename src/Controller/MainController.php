@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\Cache;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Environment;
+use function PHPUnit\Framework\isEmpty;
 
 class MainController extends AbstractController
 {
@@ -34,14 +35,30 @@ class MainController extends AbstractController
     }
 
     #[Route('/{_locale<%app.supported_locales%>}/', name: 'homepage', options: ['expose'=>true])]
-    public function index(Request $request, UsersRepository $users): Response
+    public function index(Request $request, UsersRepository $users, AlbumRepository $albumRepository): Response
     {
         if($users->checkIdentity($request->cookies->get('username'), $request->cookies->get('password')) != []) {
             $_locale = 'en';
-            if ($request->isXmlHttpRequest()) {
-                return new Response($this->twig->resolveTemplate('index.html.twig')->renderBlock('main'));
+            $username = $request->cookies->get('username');
+            $lastAlbums = implode(",",$this->doctrine->getConnection()->fetchAssociative("SELECT last_albums FROM users WHERE username = E'$username'"));
+            $lastAlbums= explode(",",trim($lastAlbums, '{}'));
+
+            $albums = [];
+            if($lastAlbums[0] !== "") {
+                foreach ($lastAlbums as $nr) {
+                    $ALBUM_QUERY = "SELECT * FROM album WHERE id = $nr";
+                    $res = $this->doctrine->getConnection()->fetchAssociative($ALBUM_QUERY);
+                    $albums[] = $res;
+                }
             }
-            return $this->render('index.html.twig');
+            if ($request->isXmlHttpRequest()) {
+                return new Response($this->twig->resolveTemplate('index.html.twig')->renderBlock('main', [
+                    'albums' => $albums,
+                ]));
+            }
+            return $this->render('index.html.twig', [
+                'albums' => $albums,
+            ]);
         } else {
             return $this->redirectToRoute('home');
         }
@@ -186,5 +203,24 @@ class MainController extends AbstractController
         $response->send();
 
         return $this->redirectToRoute('home');
+    }
+
+    #[Route('/lastalbum', name: 'lastalbum', options: ['expose' => true])]
+    public function lastAlbum(Request $request, UsersRepository $users): Response
+    {
+        $username = $request->cookies->get('username');
+        $lastAlbums = implode(",",$this->doctrine->getConnection()->fetchAssociative("SELECT last_albums FROM users WHERE username = E'$username'"));
+        $lastAlbums= explode(",",trim($lastAlbums, '{}'));
+        if($lastAlbums[0] === "") array_shift($lastAlbums);
+        if(!in_array($request->request->get('alb_id'), $lastAlbums)) {
+            if(sizeof($lastAlbums) === 4)
+                array_shift($lastAlbums);
+            array_push($lastAlbums, $request->request->get('alb_id'));
+            $lastAlbums = implode(",", $lastAlbums);
+            $USER_ROW = "UPDATE users SET last_albums = '{$lastAlbums}' WHERE username = '$username'";
+            $statement = $this->doctrine->getConnection()->prepare($USER_ROW);
+            $statement->execute();
+        }
+        return new Response();
     }
 }
