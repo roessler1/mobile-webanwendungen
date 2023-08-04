@@ -4,13 +4,13 @@
     row-gap: 5px;
 }
 
-#line {
+.line {
     border-bottom: 1px solid #b3b3b3;
     width: 100%;
     margin-left: 10px;
 }
 
-#album-divider {
+.album-divider {
     margin-top: 10px;
     color: #b3b3b3;
     font-size: 1.2rem;
@@ -40,4 +40,10 @@
 .album-name-wrapper {
     display: flex;
     justify-content: center;
+}
+
+#last-artists {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    row-gap: 5px;
 }

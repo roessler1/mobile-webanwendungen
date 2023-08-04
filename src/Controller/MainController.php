@@ -51,13 +51,26 @@ class MainController extends AbstractController
                     $albums[] = $res;
                 }
             }
+            $lastArtists = implode(",",$this->doctrine->getConnection()->fetchAssociative("SELECT last_artists FROM users WHERE username = E'$username'"));
+            $lastArtists= explode(",",trim($lastArtists, '{}'));
+
+            $artists = [];
+            if($lastArtists[0] !== "") {
+                foreach ($lastArtists as $nr) {
+                    $ARTIST_QUERY = "SELECT * FROM artist WHERE id = $nr";
+                    $res = $this->doctrine->getConnection()->fetchAssociative($ARTIST_QUERY);
+                    $artists[] = $res;
+                }
+            }
             if ($request->isXmlHttpRequest()) {
                 return new Response($this->twig->resolveTemplate('index.html.twig')->renderBlock('main', [
                     'albums' => $albums,
+                    'artists' => $artists,
                 ]));
             }
             return $this->render('index.html.twig', [
                 'albums' => $albums,
+                'artists' => $artists,
             ]);
         } else {
             return $this->redirectToRoute('home');
@@ -218,6 +231,25 @@ class MainController extends AbstractController
             array_push($lastAlbums, $request->request->get('alb_id'));
             $lastAlbums = implode(",", $lastAlbums);
             $USER_ROW = "UPDATE users SET last_albums = '{$lastAlbums}' WHERE username = '$username'";
+            $statement = $this->doctrine->getConnection()->prepare($USER_ROW);
+            $statement->execute();
+        }
+        return new Response();
+    }
+
+    #[Route('/lastartist', name: 'lastartist', options: ['expose' => true])]
+    public function lastArtist(Request $request, UsersRepository $users): Response
+    {
+        $username = $request->cookies->get('username');
+        $lastArtist = implode(",",$this->doctrine->getConnection()->fetchAssociative("SELECT last_artists FROM users WHERE username = E'$username'"));
+        $lastArtist= explode(",",trim($lastArtist, '{}'));
+        if($lastArtist[0] === "") array_shift($lastArtist);
+        if(!in_array($request->request->get('art_id'), $lastArtist)) {
+            if(sizeof($lastArtist) === 4)
+                array_shift($lastArtist);
+            array_push($lastArtist, $request->request->get('art_id'));
+            $lastArtist = implode(",", $lastArtist);
+            $USER_ROW = "UPDATE users SET last_artists = '{$lastArtist}' WHERE username = '$username'";
             $statement = $this->doctrine->getConnection()->prepare($USER_ROW);
             $statement->execute();
         }

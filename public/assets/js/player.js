@@ -330,6 +330,12 @@
             url: url,
             type: 'POST',
             data: {alb_id: queue[currentTrack].album.id},
+        });
+        url = Routing.generate('lastartist');
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {art_id: queue[currentTrack].artist.id},
         })
         document.getElementById('slider-pos').setAttribute("max", queue[currentTrack].duration);
         setMetadata(queue[currentTrack]);

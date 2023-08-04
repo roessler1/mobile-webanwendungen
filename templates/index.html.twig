@@ -3,10 +3,26 @@
 {% block main %}
     <link rel="stylesheet" href="/assets/css/index.css">
     <link rel="stylesheet" href="/assets/css/index_desktop.css" media="only screen and (min-width: 600px)">
+    {% if artists is not empty %}
+        <div class="album-divider">
+            {{ 'Last Listened Artists'|trans }}
+            <div class="line"></div>
+        </div>
+        <div id="last-artists">
+            {% for artist in artists %}
+                <div class="album">
+                    <div class="album-cover" style="background-image: url('/music/Music{{ artist.picture }}')" onclick="loadContent('artist', {{ artist.id }})"></div>
+                    <div class="album-name-wrapper">
+                        <div class="album-name" onclick="loadContent('album', {{ artist.id }})">{{ artist.name }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     {% if albums is not empty %}
-        <div id="album-divider">
+        <div class="album-divider">
             {{ 'Last Listened Albums'|trans }}
-            <div id="line"></div>
+            <div class="line"></div>
         </div>
         <div id="last-albums">
             {% for album in albums %}

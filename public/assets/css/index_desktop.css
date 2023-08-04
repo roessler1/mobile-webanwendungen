@@ -17,3 +17,8 @@
     background-blend-mode: color;
     cursor: pointer;
 }
+
+#last-artists {
+    grid-template-columns: 25% 25% 25% 25%;
+    row-gap: 10px;
+}
