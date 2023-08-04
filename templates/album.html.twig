@@ -28,7 +28,7 @@
         {% for track in tracks %}
             {% set tracks_json = tracks_json|merge([{name: track.name, path: audio_directory~track.path,
                 duration: track.duration, number: track.getTrackNumber,
-                album: {name: track.album.name, cover: audio_directory~track.album.cover},
+                album: {name: track.album.name, cover: audio_directory~track.album.cover, id: track.album.id},
                 artist: {name: track.album.artist.name, id: track.album.artist.id}}]) %}
         {% endfor %}
         {% for track in tracks %}

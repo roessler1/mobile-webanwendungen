@@ -24,7 +24,8 @@
 <div class="grid-results">
     {% for album in albums %}
         <div class="show-grid-result">
-            <div class="cover-result" style="background-image: url('{{ audio_directory ~ album.cover }}')"></div>
+            <div class="cover-result" style="background-image: url('{{ audio_directory ~ album.cover }}')"
+                 onclick="loadContent('album', {{ album.id }})"></div>
             <div class="name-result-wrapper">
                 <div class="name-result">{{ album.name }}</div>
             </div>
@@ -37,9 +38,16 @@
     {{ 'Tracks'|trans }}
     <div class="line"></div>
 </div>
+    {% set tracks_json = {} %}
+    {% for track in tracks %}
+        {% set tracks_json = tracks_json|merge([{name: track.name, path: audio_directory~track.path,
+            duration: track.duration, number: track.getTrackNumber,
+            album: {name: track.album.name, cover: audio_directory~track.album.cover},
+            artist: {name: track.album.artist.name, id: track.album.artist.id}}]) %}
+    {% endfor %}
 <div id="track-results">
     {% for track in tracks %}
-        <div class="table-row" onclick="sendData('{{ audio_directory }}' + '{{ track.path }}')">
+        <div class="table-row" onclick="setQueue({{ tracks_json|json_encode }}, {{ loop.index-1 }})">
             <div class="album-cover" style="background-image: url('{{ audio_directory ~ track.album.cover }}')"></div>
             <div>{{ loop.index }}. {{ track.name }}</div>
             <div class="duration">
